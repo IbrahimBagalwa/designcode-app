@@ -3,6 +3,7 @@ import Card, { CardProps } from "./components/Card";
 import { SafeAreaView, ScrollView } from "react-native";
 import SvgNotification from "./assets/IconNotification";
 import Logo, { LogoProps } from "./components/Logo";
+import Course from "./components/Course";
 
 export default function App() {
   return (
@@ -41,6 +42,10 @@ export default function App() {
               <Card key={index} {...items} />
             ))}
           </ScrollView>
+          <Subtitle>Popular courses</Subtitle>
+          {coursesData.map((data, index) => (
+            <Course key={index} {...data} />
+          ))}
         </ScrollView>
       </SafeAreaView>
     </Container>
@@ -139,5 +144,62 @@ const cardData = [
     logo: require("./assets/logo-react.png"),
     caption: "React Native",
     subtitle: "4 of 12 sections",
+  },
+];
+
+const coursesData = [
+  {
+    title: "Prototype in InVision Studio",
+    image: require("./assets/background15.jpg"),
+    subtitle: "10 sections",
+    logo: require("./assets/logo-studio.png"),
+    author: "Ibrahim Bag",
+    avatar: require("./assets/avatar.jpg"),
+    caption: "Design and interactive prototype",
+  },
+  {
+    title: "Prototype in InVision Studio",
+    image: require("./assets/background15.jpg"),
+    subtitle: "10 sections",
+    logo: require("./assets/logo-studio.png"),
+    author: "Ibrahim Bag",
+    avatar: require("./assets/avatar.jpg"),
+    caption: "Design and interactive prototype",
+  },
+  {
+    title: "Prototype in InVision Studio",
+    image: require("./assets/background15.jpg"),
+    subtitle: "10 sections",
+    logo: require("./assets/logo-studio.png"),
+    author: "Ibrahim Bag",
+    avatar: require("./assets/avatar.jpg"),
+    caption: "Design and interactive prototype",
+  },
+  {
+    title: "Prototype in InVision Studio",
+    image: require("./assets/background15.jpg"),
+    subtitle: "10 sections",
+    logo: require("./assets/logo-studio.png"),
+    author: "Ibrahim Bag",
+    avatar: require("./assets/avatar.jpg"),
+    caption: "Design and interactive prototype",
+  },
+  {
+    title: "Prototype in InVision Studio",
+    image: require("./assets/background15.jpg"),
+    subtitle: "10 sections",
+    logo: require("./assets/logo-studio.png"),
+    author: "Ibrahim Bag",
+    avatar: require("./assets/avatar.jpg"),
+    caption: "Design and interactive prototype",
+  },
+  {
+    title: "Prototype in InVision Studio",
+    image: require("./assets/background15.jpg"),
+    subtitle: "10 sections",
+    logo: require("./assets/logo-studio.png"),
+    author: "Ibrahim Bag",
+    avatar: require("./assets/avatar.jpg"),
+    caption: "Design and interactive prototype",
   },
 ];
