@@ -1,17 +1,30 @@
+import { ImageSourcePropType } from "react-native";
 import styled from "styled-components/native";
-
-export default function Card(props: any) {
+export interface CardProps {
+  image: ImageSourcePropType;
+  title: string;
+  logo: ImageSourcePropType;
+  caption: string;
+  subtitle: string;
+}
+export default function Card({
+  image,
+  title,
+  logo,
+  caption,
+  subtitle,
+}: CardProps) {
   return (
     <Container>
       <Cover>
-        <Image source={require("../assets/background2.jpg")} />
-        <Title>Styled Components</Title>
+        <Image source={image} />
+        <Title>{title}</Title>
       </Cover>
       <Content>
-        <Logo source={require("../assets/logo-react.png")} />
+        <Logo source={logo} />
         <Wrapper>
-          <Caption>React Native</Caption>
-          <Subtitle>5 of 13 sections</Subtitle>
+          <Caption>{caption}</Caption>
+          <Subtitle>{subtitle}</Subtitle>
         </Wrapper>
       </Content>
     </Container>
