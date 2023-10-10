@@ -27,7 +27,19 @@ export default function App() {
               style={{ position: "absolute", right: 20, top: 5 }}
             />
           </TitleBar>
-          <Logo {...logoData} />
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            style={{
+              flexDirection: "row",
+              padding: 20,
+              paddingLeft: 12,
+              paddingTop: 30,
+            }}
+          >
+            <Logo {...logoData} />
+            <Logo {...logoData} />
+          </ScrollView>
           <Subtitle>Continue learning</Subtitle>
           <ScrollView
             horizontal={true}
@@ -78,6 +90,6 @@ const Subtitle = styled.Text`
   font-weight: 600;
   font-size: 15px;
   margin-left: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
   text-transform: uppercase;
 `;
