@@ -1,19 +1,9 @@
 import styled from "styled-components/native";
-import Card from "./components/Card";
+import Card, { CardProps } from "./components/Card";
 import { SafeAreaView, ScrollView } from "react-native";
 import SvgNotification from "./assets/IconNotification";
-import Logo from "./components/Logo";
-const data = {
-  title: "Styled Components",
-  image: require("./assets/background2.jpg"),
-  logo: require("./assets/logo-react.png"),
-  caption: "React Native",
-  subtitle: "3 of 12 sections",
-};
-const logoData = {
-  title: "Framer X",
-  image: require("./assets/logo-framerx.png"),
-};
+import Logo, { LogoProps } from "./components/Logo";
+
 export default function App() {
   return (
     <Container>
@@ -37,8 +27,9 @@ export default function App() {
               paddingTop: 30,
             }}
           >
-            <Logo {...logoData} />
-            <Logo {...logoData} />
+            {logoData.map((items: LogoProps, index: number) => (
+              <Logo key={index} {...items} />
+            ))}
           </ScrollView>
           <Subtitle>Continue learning</Subtitle>
           <ScrollView
@@ -46,9 +37,9 @@ export default function App() {
             style={{ paddingBottom: 30 }}
             showsHorizontalScrollIndicator={false}
           >
-            <Card {...data} />
-            <Card {...data} />
-            <Card {...data} />
+            {cardData.map((items: CardProps, index: number) => (
+              <Card key={index} {...items} />
+            ))}
           </ScrollView>
         </ScrollView>
       </SafeAreaView>
@@ -93,3 +84,60 @@ const Subtitle = styled.Text`
   margin-top: 20px;
   text-transform: uppercase;
 `;
+const logoData = [
+  {
+    title: "Framer X",
+    image: require("./assets/logo-framerx.png"),
+  },
+  {
+    title: "Figma",
+    image: require("./assets/logo-figma.png"),
+  },
+  {
+    title: "Studio",
+    image: require("./assets/logo-studio.png"),
+  },
+  {
+    title: "React",
+    image: require("./assets/logo-react.png"),
+  },
+  {
+    title: "Swift",
+    image: require("./assets/logo-swift.png"),
+  },
+  {
+    title: "Sketch",
+    image: require("./assets/logo-sketch.png"),
+  },
+];
+
+const cardData = [
+  {
+    title: "React Native for Designers",
+    image: require("./assets/background11.jpg"),
+    logo: require("./assets/logo-react.png"),
+    caption: "React Native",
+    subtitle: "1 of 12 sections",
+  },
+  {
+    title: "Styled Components",
+    image: require("./assets/background12.jpg"),
+    logo: require("./assets/logo-react.png"),
+    caption: "React Native",
+    subtitle: "2 of 12 sections",
+  },
+  {
+    title: "Props and Icons",
+    image: require("./assets/background13.jpg"),
+    logo: require("./assets/logo-react.png"),
+    caption: "React Native",
+    subtitle: "3 of 12 sections",
+  },
+  {
+    title: "Static Data amd Loop",
+    image: require("./assets/background14.jpg"),
+    logo: require("./assets/logo-react.png"),
+    caption: "React Native",
+    subtitle: "4 of 12 sections",
+  },
+];

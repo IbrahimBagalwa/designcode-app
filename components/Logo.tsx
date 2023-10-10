@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { ImageSourcePropType } from "react-native";
-interface LogoProps {
+export interface LogoProps {
   title: string;
   image: ImageSourcePropType;
 }
