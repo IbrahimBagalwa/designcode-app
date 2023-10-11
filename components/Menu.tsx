@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef } from "react";
 import { Animated, Dimensions, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
+import MenuItem, { MenuItemProps } from "./MenuItem";
 
 const screenHeight = Dimensions.get("window").height;
 export default function Menu() {
@@ -39,7 +40,11 @@ export default function Menu() {
           <Ionicons name="ios-close" size={44} color="#546bfb" />
         </CloseView>
       </TouchableOpacity>
-      <Content />
+      <Content>
+        {menuItems.map((items: MenuItemProps, index: number) => (
+          <MenuItem key={index} {...items} />
+        ))}
+      </Content>
     </AnimatedContainer>
   );
 }
@@ -70,6 +75,7 @@ const Cover = styled.View`
 const Content = styled.View`
   height: ${screenHeight};
   background: #f0f3f5;
+  padding: 50px;
 `;
 const Image = styled.Image`
   position: absolute;
@@ -86,3 +92,10 @@ const Subtitle = styled.Text`
   color: rgba(255, 255, 255, 0.6);
   margin-top: 8px;
 `;
+
+const menuItems = [
+  { icon: "ios-settings", title: "Account", text: "Settings" },
+  { icon: "ios-card", title: "Billing", text: "Payments" },
+  { icon: "ios-compass", title: "Learn React", text: "Start Course" },
+  { icon: "ios-exit", title: "Log out", text: "See you soon!" },
+];
