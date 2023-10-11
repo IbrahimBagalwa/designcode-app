@@ -3,22 +3,41 @@ import { useEffect, useRef } from "react";
 import { Animated, Dimensions, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import MenuItem, { MenuItemProps } from "./MenuItem";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { closeMenu } from "../redux/menuSlice";
+import { RootState } from "../redux/store";
 
 const screenHeight = Dimensions.get("window").height;
+
 export default function Menu() {
-  const top = useRef(new Animated.Value(screenHeight)).current;
-  const toggledMenu = () => {
-    Animated.spring(top, {
-      toValue: screenHeight,
-      useNativeDriver: false,
-    }).start();
-  };
+  const dispatch = useDispatch();
+  const { operation } = useSelector((state: RootState) => state.action);
+
   useEffect(() => {
-    Animated.spring(top, {
-      toValue: 0,
-      useNativeDriver: false,
-    }).start();
-  }, []);
+    toggledMenu();
+  }, [operation]);
+
+  function handlePress() {
+    dispatch(closeMenu("closeMenu"));
+  }
+  const top = useRef(new Animated.Value(screenHeight)).current;
+
+  function toggledMenu() {
+    if (operation === "openMenu") {
+      Animated.spring(top, {
+        toValue: 60,
+        useNativeDriver: false,
+      }).start();
+    }
+    if (operation === "closeMenu") {
+      Animated.spring(top, {
+        toValue: screenHeight,
+        useNativeDriver: false,
+      }).start();
+    }
+  }
+
   return (
     <AnimatedContainer style={{ top: top }}>
       <Cover>
@@ -27,7 +46,7 @@ export default function Menu() {
         <Subtitle>Designer at TheGym</Subtitle>
       </Cover>
       <TouchableOpacity
-        onPress={toggledMenu}
+        onPress={handlePress}
         style={{
           position: "absolute",
           top: 120,
@@ -55,6 +74,8 @@ const Container = styled.View`
   height: 100%;
   width: 100%;
   z-index: 100;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 const CloseView = styled.View`
   width: 44px;
