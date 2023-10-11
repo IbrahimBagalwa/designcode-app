@@ -4,10 +4,12 @@ import { SafeAreaView, ScrollView } from "react-native";
 import SvgNotification from "./assets/IconNotification";
 import Logo, { LogoProps } from "./components/Logo";
 import Course from "./components/Course";
+import Menu from "./components/Menu";
 
 export default function App() {
   return (
     <Container>
+      <Menu />
       <SafeAreaView>
         <ScrollView>
           <TitleBar>
