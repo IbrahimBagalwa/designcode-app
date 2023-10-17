@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import MenuItem, { MenuItemProps } from "./MenuItem";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { closeMenu } from "../redux/menuSlice";
+import { closeMenu } from "../redux/features/menuSlice";
 import { RootState } from "../redux/store";
 
 const screenHeight = Dimensions.get("window").height;

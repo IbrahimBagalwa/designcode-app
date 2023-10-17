@@ -13,10 +13,11 @@ import Logo, { LogoProps } from "../components/Logo";
 import Card, { CardProps } from "../components/Card";
 import Course from "../components/Course";
 import { useDispatch } from "react-redux";
-import { openMenu } from "../redux/menuSlice";
+import { openMenu } from "../redux/features/menuSlice";
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import Avatar from "../components/Avatar";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export default function HomeScreen() {
       Animated.timing(scale, {
         toValue: 0.9,
         duration: 300,
-        easing: Easing.in(),
+        easing: Easing.ease,
         useNativeDriver: false,
       }).start();
       Animated.spring(opacity, {
@@ -51,7 +52,7 @@ export default function HomeScreen() {
       Animated.timing(scale, {
         toValue: 1,
         duration: 300,
-        easing: Easing.in(),
+        easing: Easing.ease,
         useNativeDriver: false,
       }).start();
       Animated.spring(opacity, {
@@ -74,7 +75,7 @@ export default function HomeScreen() {
                 onPress={handlePress}
                 style={{ position: "absolute", top: 0, left: 20 }}
               >
-                <Avatar source={require("../assets/avatar.jpg")} />
+                <Avatar />
               </TouchableOpacity>
               <Title>Welcome back</Title>
               <Name>Ibrahim</Name>
@@ -142,12 +143,7 @@ const TitleBar = styled.View`
   margin-top: 50px;
   padding-left: 80px;
 `;
-const Avatar = styled.Image`
-  width: 50px;
-  height: 50px;
-  background: black;
-  border-radius: 25px;
-`;
+
 const Subtitle = styled.Text`
   color: #b8bece;
   font-weight: 600;
