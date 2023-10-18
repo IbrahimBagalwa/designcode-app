@@ -18,11 +18,15 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Avatar from "../components/Avatar";
+import { useGetUserInfoQuery } from "../redux/features/userInfo";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const { operation } = useSelector((state: RootState) => state.action);
+  const { data, isLoading } = useGetUserInfoQuery("");
 
+  const name = `${data?.results[0]?.name?.title} ${data?.results[0]?.name?.first} ${data?.results[0]?.name?.last}`;
+  const username = isLoading && isLoading ? "Ibrahim Bagalwa" : name;
   useEffect(() => {
     StatusBar.setBarStyle("dark-content", true);
     toggledMenu();
@@ -78,7 +82,7 @@ export default function HomeScreen() {
                 <Avatar />
               </TouchableOpacity>
               <Title>Welcome back</Title>
-              <Name>Ibrahim</Name>
+              <Name>{username}</Name>
               <SvgNotification
                 style={{ position: "absolute", right: 20, top: 5 }}
               />

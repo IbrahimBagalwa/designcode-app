@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components/native";
+import { useGetUserInfoQuery } from "../redux/features/userInfo";
 
 export default function Avatar() {
-  const [userInfo, setUserInfo] = useState({
-    photo: "https://thinksport.com.au/wp-content/uploads/2020/01/avatar-.jpg",
-  });
+  const { data, isLoading } = useGetUserInfoQuery("");
 
-  const fetchUser = async () => {
-    const user = await fetch("https://randomuser.me/api/");
-    const res = await user.json();
-    setUserInfo({ photo: res.results[0].picture.medium });
-  };
+  const uriImage = isLoading
+    ? "https://thinksport.com.au/wp-content/uploads/2020/01/avatar-.jpg"
+    : data.results[0].picture.medium;
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
-  return <Image source={{ uri: userInfo.photo }} />;
+  return <Image source={{ uri: uriImage }} />;
 }
 const Image = styled.Image`
   width: 50px;
