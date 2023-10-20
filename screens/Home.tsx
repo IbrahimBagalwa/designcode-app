@@ -20,7 +20,7 @@ import { RootState } from "../redux/store";
 import Avatar from "../components/Avatar";
 import { useGetUserInfoQuery } from "../redux/features/userInfo";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }: any) {
   const dispatch = useDispatch();
   const { operation } = useSelector((state: RootState) => state.action);
   const { data, isLoading } = useGetUserInfoQuery("");
@@ -108,7 +108,12 @@ export default function HomeScreen() {
               showsHorizontalScrollIndicator={false}
             >
               {cardData.map((items: CardProps, index: number) => (
-                <Card key={index} {...items} />
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => navigation.navigate("Courses")}
+                >
+                  <Card {...items} />
+                </TouchableOpacity>
               ))}
             </ScrollView>
             <Subtitle>Popular courses</Subtitle>

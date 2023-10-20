@@ -1,11 +1,11 @@
 import { Provider } from "react-redux";
-import HomeScreen from "./screens/Home";
 import { store } from "./redux/store";
+import TabNavigator from "./naviagator/TabNavigator";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <HomeScreen />
+      <TabNavigator />
     </Provider>
   );
 }
